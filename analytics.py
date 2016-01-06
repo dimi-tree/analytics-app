@@ -3,6 +3,7 @@ import datetime
 import json
 import os
 from urlparse import parse_qsl, urlparse
+import re
 
 from flask import Flask, Response, abort, request
 import peewee
@@ -14,14 +15,14 @@ BEACON = b64decode('R0lGODlhAQABAIAAANvf7wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==
 # Store the database file in the app directory.
 APP_DIR = os.path.dirname(__file__)
 DATABASE_NAME = os.path.join(APP_DIR, 'analytics.db')
-DOMAIN = 'http://127.0.0.1:5300'  # TODO: change me.
+DOMAIN = 'http://127.0.0.1:5000'  # TODO: change me.
 
 
 # Simple JavaScript which will be included and executed on the client-side.
-JAVASCRIPT = """(function(){
+JAVASCRIPT = re.sub(r'\n\s+', '', """(function(){
     var d=document,i=new Image,e=encodeURIComponent;
-    i.src='{DOMAIN}/a.gif?url='+e(d.location.href)+'&ref='+e(d.referrer)+'&t='+e(d.title);
-    })()""".replace('\n', '')
+    i.src='%s/a.gif?url='+e(d.location.href)+'&ref='+e(d.referrer)+'&t='+e(d.title);
+    })()""")
 
 
 # Flask application settings.
@@ -90,7 +91,7 @@ def analyze():
 @app.route('/a.js')
 def script():
     return Response(
-        app.config['JAVASCRIPT'].format(DOMAIN=app.config['DOMAIN']),
+        app.config['JAVASCRIPT'] % app.config['DOMAIN'],
         mimetype='text/javascript'
     )
 
