@@ -1,0 +1,41 @@
+7th Jan
+activate analytics env
+run python app.py
+
+Defining a JavaScript class:
+    http://www.phpied.com/3-ways-to-define-a-javascript-class/
+
+Making AJAX calls with .fetch:
+    http://richardkho.com/making-ajax-calls-in-react-native/
+    https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
+
+Making Cross-Domain Requests with CORS
+    http://stackoverflow.com/questions/8679848/cross-domain-ajax-rest-service-http-headers
+    http://www.eriwen.com/javascript/how-to-cors/
+    http://www.html5rocks.com/en/tutorials/cors/
+    https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS
+
+    http://zinoui.com/blog/cross-domain-ajax-request
+    google: cross domain ajax request header
+
+Cross-Domain Request in Flask
+    http://stackoverflow.com/questions/12785597/extjs-flask-and-ajax-cross-domain-request
+    http://flask.pocoo.org/snippets/56/
+
+How to get POSTed JSON in Flask
+    http://stackoverflow.com/questions/20001229/how-to-get-posted-json-in-flask
+    -> use force=True ?
+
+
+I am able to run the index.html (in ~/development/prototyping/javascript/analytics) with CORS,
+but for this to work I had to specify headers in api_root()
+
+I can also navigate to http://127.0.0.1:5001/
+a.js will get loaded, so the POST request will come from the same domain.
+
+
+TODO
+====
+1. Read and understand Cross-Domain Requests
+    I want to POST data to my app
+2. Read: UA plugins explained (analytics)
